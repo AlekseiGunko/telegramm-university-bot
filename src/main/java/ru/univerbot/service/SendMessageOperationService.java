@@ -24,7 +24,7 @@ public class SendMessageOperationService {
     private final String DELETED = "Введите имя стажера, которого хотите удалить из" +
             " списка обучающихся в формате" + "\n" + "Имя наставника + ФИО стежер";
     private final String COMPLETED = "Вы успешно удалили стажера из списка";
-    private final String LIST = "Список обучающихся стажеров и тест";
+    private final String LIST = "Список обучающихся стажеров";
 
     private String exams = "Понедельник - 13:30" + "\n" + "Вторник - экзаменов нет" + "\n" +
             "Среда - 11:30" + "\n" + "Четверг - 11:30" + "\n" + "Пятница - 11:30";
