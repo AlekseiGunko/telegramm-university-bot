@@ -11,5 +11,6 @@ public class VarConstant {
     public static final String RECORD = "Записать на экзамен";
     public static final String NAME_1 = "Анна Гунько";
     public static final String NAME_2 = "Алексей Гунько";
+    public static final String NAME_3 = "Персик Гунько";
 
 }

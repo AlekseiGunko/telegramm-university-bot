@@ -10,15 +10,17 @@ import java.util.List;
 public class ButtonsService {
 
     public ReplyKeyboardMarkup setButtons (List<KeyboardRow> keyboardRowList) {
-
+        //добавление кнопок с натройками
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setSelective(true);
         replyKeyboardMarkup.setResizeKeyboard(true);
         replyKeyboardMarkup.setKeyboard(keyboardRowList);
+        replyKeyboardMarkup.setOneTimeKeyboard(false);
         return replyKeyboardMarkup;
     }
 
     public List<KeyboardRow> createButtons (List<String> buttonsName) {
+        //создаем кнопки и кладем их в лист
         List<KeyboardRow> keyboardRows = new ArrayList<>();
         KeyboardRow keyboardRow = new KeyboardRow();
         for (String buttonName : buttonsName) {

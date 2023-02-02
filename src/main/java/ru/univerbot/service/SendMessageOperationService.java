@@ -3,7 +3,9 @@ package ru.univerbot.service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -64,11 +66,22 @@ public class SendMessageOperationService {
     }
 
     public SendMessage createAddMessage (Update update) {
+        
+        //создаем клавиатуру на основе buttonService и добавляем туда строки с кнопками
+        //https://ru.stackoverflow.com/questions/1411677/Создать-кнопки-меню-telegrambot-горизонтально-одна-за-другой
 
         SendMessage message = createSimpleMessage(update, ADD_MESSAGE);
-        ReplyKeyboardMarkup keyboardMarkup = buttonsService.setButtons(
-                buttonsService.createButtons(asList(NAME_1, NAME_2)));
+        List<KeyboardRow> stringButtons = new ArrayList<>();
+        KeyboardRow keyboardRow = new KeyboardRow();
+        keyboardRow.add(NAME_1);
+        KeyboardRow keyboardRow2 = new KeyboardRow();
+        keyboardRow2.add(NAME_2);
+        stringButtons.add(keyboardRow);
+        stringButtons.add(keyboardRow2);
+        ReplyKeyboardMarkup keyboardMarkup = buttonsService.setButtons(stringButtons);
+
         message.setReplyMarkup(keyboardMarkup);
+
         return message;
 
     }
@@ -102,6 +115,7 @@ public class SendMessageOperationService {
     }
 
     public SendMessage createHelloMessage (Update update) {
+        //ответ на команду /start
         SendMessage message = createSimpleMessage(update, GET_MESSAGE_START);
         return message;
     }
