@@ -2,25 +2,23 @@ package ru.univerbot.core;
 
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import ru.univerbot.Pass;
-import ru.univerbot.configs.Configs;
+import ru.univerbot.Config;
 import ru.univerbot.service.SendMessageOperationService;
 import ru.univerbot.store.ArrayListStore;
 
 
-import static ru.univerbot.Pass.COMMON_PASSWORD;
+import static ru.univerbot.Config.COMMON_PASSWORD;
 import static ru.univerbot.constant.VarConstant.*;
 
 public class CoreBot extends TelegramLongPollingBot {
     SendMessageOperationService operationService = new SendMessageOperationService();
     private ArrayListStore store = new ArrayListStore();
-    private Configs configs = new Configs();
     private boolean startAdd;
     private boolean pass = false;
     private boolean endDel;
     private boolean name_1;
     private boolean name_2;
-    private Pass password = new Pass();
+    private Config config = new Config();
 
 
     @Override
@@ -132,12 +130,12 @@ public class CoreBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return configs.getBOT_NAME();
+        return config.getBOT_NAME();
     }
 
     @Override
     public String getBotToken() {
-        return configs.getBOT_TOKEN();
+        return config.getBOT_TOKEN();
     }
 
 }

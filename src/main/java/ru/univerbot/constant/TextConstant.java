@@ -1,7 +1,6 @@
 package ru.univerbot.constant;
 
 
-import javax.sql.rowset.serial.SerialStruct;
 
 import static ru.univerbot.constant.VarConstant.*;
 

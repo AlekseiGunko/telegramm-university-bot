@@ -13,10 +13,7 @@ public class VarConstant {
     public static final String NAME_2 = "Алексей Гунько";
     public static final String NAME_3 = "Персик Гунько";
     public static final String NAME_4 = "Тосик Гунько";
- //   public static final String COMMON_PASSWORD = "BodroCoffeePassword";
-
     public static final String MAIN = "Вернуться на главный экран";
-
     public static final String LIST_COMMAND = "Список команд";
 
 
