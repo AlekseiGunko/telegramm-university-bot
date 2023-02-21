@@ -4,7 +4,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.univerbot.Config;
 import ru.univerbot.service.SendMessageOperationService;
-import ru.univerbot.store.ArrayListStore;
+import ru.univerbot.store.StoreListTrainees;
 
 
 import static ru.univerbot.Config.COMMON_PASSWORD;
@@ -12,12 +12,14 @@ import static ru.univerbot.constant.VarConstant.*;
 
 public class CoreBot extends TelegramLongPollingBot {
     SendMessageOperationService operationService = new SendMessageOperationService();
-    private ArrayListStore store = new ArrayListStore();
+    private StoreListTrainees store = new StoreListTrainees();
     private boolean startAdd;
     private boolean pass = false;
     private boolean endDel;
     private boolean name_1;
     private boolean name_2;
+    private boolean name_3;
+    private boolean name_4;
     private Config config = new Config();
 
 
@@ -58,11 +60,11 @@ public class CoreBot extends TelegramLongPollingBot {
                         break;
 
                     case TRAINEE:
-                        if (startAdd == false) {
+
                             execute(operationService.createListMessage(update));
                             execute(operationService.createSimpleMessage(update, store.selectAll()));
                             break;
-                        }
+
 
                     case DELETED_TRAINEE:
                         endDel = true;
@@ -79,36 +81,60 @@ public class CoreBot extends TelegramLongPollingBot {
 
                     case NAME_1:
                         name_1 = true;
+                        name_2 = false;
+                        name_3 = false;
+                        name_4 = false;
                         execute(operationService.createName1Message(update));
                         break;
 
                     case NAME_2:
                         name_2 = true;
+                        name_1 = false;
+                        name_3 = false;
+                        name_4 = false;
                         execute(operationService.createName2Message(update));
                         break;
 
 
                     case NAME_3:
-                        //флаги установить
+                        name_3 = true;
+                        name_1 = false;
+                        name_2 = false;
+                        name_4 = false;
                         execute(operationService.createName3Message(update));
                         break;
 
                     case NAME_4:
-                        //флаги установить
+                        name_4 = true;
+                        name_1 = false;
+                        name_2 = false;
+                        name_3 = false;
                         execute(operationService.createName4Message(update));
                         break;
 
 
                     default:
                         if (startAdd == true && name_1 == true) {
-                            store.save(update.getMessage().getText() + " - " + NAME_1);
+                            store.save(NAME_1, update.getMessage().getText());
                             break;
                         }
 
                         if (startAdd == true && name_2 == true) {
-                            store.save(update.getMessage().getText() + " - " + NAME_2);
+                            store.save(NAME_2, update.getMessage().getText());
                             break;
                         }
+
+                        if (startAdd == true && name_3 == true) {
+                            store.save(NAME_3, update.getMessage().getText());
+                            break;
+                        }
+
+
+                        if (startAdd == true && name_4 == true) {
+                            store.save(NAME_4, update.getMessage().getText());
+                            break;
+                        }
+
 
                         if (endDel == true) {
                             store.deleted(update.getMessage().getText());

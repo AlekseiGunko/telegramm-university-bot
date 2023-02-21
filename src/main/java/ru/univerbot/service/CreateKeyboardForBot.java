@@ -26,7 +26,9 @@ public class CreateKeyboardForBot {
     }
 
     public ReplyKeyboardMarkup addDeleteCheckTrainee () {
+
         //клавиатура выбора действия для наставника
+
         List<KeyboardRow> stringButtons = new ArrayList<>();
         stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(ADD_TRAINEE, END_TRAINEE)));
         stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(DELETED_TRAINEE)));
