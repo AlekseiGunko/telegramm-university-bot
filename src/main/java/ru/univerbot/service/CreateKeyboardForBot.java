@@ -57,5 +57,40 @@ public class CreateKeyboardForBot {
         return keyboardMarkup;
     }
 
+    public ReplyKeyboardMarkup scheduleExams () {
+
+        //клавиатура команды /exams
+
+        List<KeyboardRow> stringButtons = new ArrayList<>();
+        stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(RECORD)));
+        stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(MAIN)));
+        ReplyKeyboardMarkup keyboardMarkup = buttonsService.setButtons(stringButtons);
+        return keyboardMarkup;
+    }
+
+    public ReplyKeyboardMarkup addExamsAndEnd () {
+
+        //клавиатура завершения добавления стажеров на экзамен
+
+        List<KeyboardRow> stringButtons = new ArrayList<>();
+        stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(END_TRAINEE)));
+        stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(MAIN)));
+        ReplyKeyboardMarkup keyboardMarkup = buttonsService.setButtons(stringButtons);
+        return keyboardMarkup;
+    }
+
+    public ReplyKeyboardMarkup deletedExamsTrainees () {
+
+        //клавиатура удаление или очистки листа с записанными на экзамен стажерами
+
+        List<KeyboardRow> stringButtons = new ArrayList<>();
+        stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(DELETED_TRAINEE_EXAMS)));
+        stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(DELETED_TRAINEES_ALL)));
+        stringButtons.add(buttonsService.createButtonsOnKeyboard(asList(MAIN)));
+        ReplyKeyboardMarkup keyboardMarkup = buttonsService.setButtons(stringButtons);
+        return keyboardMarkup;
+
+    }
+
 
 }

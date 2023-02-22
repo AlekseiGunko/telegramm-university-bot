@@ -7,23 +7,13 @@ import ru.univerbot.constant.TextConstant;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
-import static ru.univerbot.constant.VarConstant.*;
-
 public class SendMessageOperationService {
 
-    private final String DELETED = "Введите имя стажера, которого хотите удалить из" +
-            " списка обучающихся в формате" + "\n" + "Имя наставника + ФИО стежер";
-    private final String COMPLETED = "Вы успешно удалили стажера из списка";
-
-    private String exams = "Понедельник - 13:30" + "\n" + "Вторник - экзаменов нет" + "\n" +
-            "Среда - 11:30" + "\n" + "Четверг - 11:30" + "\n" + "Пятница - 11:30";
-
-    private final ButtonsService buttonsService = new ButtonsService();
     private final CreateKeyboardForBot createKeyboard = new CreateKeyboardForBot();
     private final TextConstant textConstant = new TextConstant();
 
     public SendMessage createStartMessage (Update update) {
+
         //выбор наставника по константе add_trainees
 
       SendMessage message = createSimpleMessage(update, textConstant.ADD_TRAINEES);
@@ -96,13 +86,43 @@ public class SendMessageOperationService {
 
         //сообщение о расписании экзаменов
 
-        SendMessage message = createSimpleMessage(update, exams);
-        ReplyKeyboardMarkup keyboardMarkup = buttonsService.setButtons(
-                buttonsService.createButtons(asList(RECORD)));
+        SendMessage message = createSimpleMessage(update, textConstant.SCHEDULE_EXAMS);
+        ReplyKeyboardMarkup keyboardMarkup = createKeyboard.scheduleExams();
         message.setReplyMarkup(keyboardMarkup);
         return message;
 
     }
+
+    public SendMessage createWriteExamsMessage (Update update) {
+
+        //сообщение о записи стажеров на экзамены
+
+         SendMessage message = createSimpleMessage(update, textConstant.MESSAGE_ADD_TRAINEES_IN_EXAMS);
+        ReplyKeyboardMarkup keyboardMarkup = createKeyboard.addExamsAndEnd();
+        message.setReplyMarkup(keyboardMarkup);
+        return message;
+
+    }
+
+    public SendMessage createExamsTraineesMessage (Update update) {
+
+        //сообщение выводит список стажеров на экзамене
+
+        SendMessage message = createSimpleMessage(update, textConstant.MESSAGE_LIST_EXAMS);
+        ReplyKeyboardMarkup keyboardMarkup = createKeyboard.deletedExamsTrainees();
+        message.setReplyMarkup(keyboardMarkup);
+        return message;
+
+    }
+
+    public SendMessage createExamsDeletedMessage (Update update) {
+
+        //сообщение выводит формат удаления экзаменуемого
+
+        SendMessage message = createSimpleMessage(update, textConstant.DELETED_EXAMS);
+        return message;
+    }
+
 
     public SendMessage createListMessage (Update update) {
 
@@ -117,7 +137,27 @@ public class SendMessageOperationService {
 
     public SendMessage createCompletedMessage (Update update) {
 
-        SendMessage message = createSimpleMessage(update, COMPLETED);
+        //сообщение что стажер удален успешно
+
+        SendMessage message = createSimpleMessage(update, textConstant.COMPLETED);
+        return message;
+
+    }
+
+    public SendMessage createCompleteExamsdMessage (Update update) {
+
+        //сообщение что экзаменуемый удален успешно
+
+        SendMessage message = createSimpleMessage(update, textConstant.COMPLETED_EXAMS);
+        return message;
+
+    }
+
+    public SendMessage createCompleteExamsAllMessage (Update update) {
+
+        //сообщение что список экзаменов очищен успешно
+
+        SendMessage message = createSimpleMessage(update, textConstant.DELETED_ALL_LIST_EXAMS);
         return message;
 
     }
@@ -163,7 +203,7 @@ public class SendMessageOperationService {
 
         //сообщение при удалении стажеров
 
-        SendMessage message = createSimpleMessage(update, DELETED);
+        SendMessage message = createSimpleMessage(update, textConstant.DELETED);
         return message;
     }
 

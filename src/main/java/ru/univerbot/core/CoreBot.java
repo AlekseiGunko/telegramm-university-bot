@@ -4,7 +4,9 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import ru.univerbot.Config;
 import ru.univerbot.service.SendMessageOperationService;
+import ru.univerbot.store.StoreExamsTrainees;
 import ru.univerbot.store.StoreListTrainees;
+
 
 
 import static ru.univerbot.Config.COMMON_PASSWORD;
@@ -13,9 +15,11 @@ import static ru.univerbot.constant.VarConstant.*;
 public class CoreBot extends TelegramLongPollingBot {
     SendMessageOperationService operationService = new SendMessageOperationService();
     private StoreListTrainees store = new StoreListTrainees();
+    private StoreExamsTrainees examsTrainees = new StoreExamsTrainees();
     private boolean startAdd;
     private boolean pass = false;
     private boolean endDel;
+    private boolean dellExams;
     private boolean name_1;
     private boolean name_2;
     private boolean name_3;
@@ -31,10 +35,6 @@ public class CoreBot extends TelegramLongPollingBot {
 
 
                 switch (update.getMessage().getText()) {
-
-                    case EXAMS:
-                        execute(operationService.createExamsMessage(update));
-                        break;
 
                     case START:
                         execute(operationService.createHelloMessage(update));
@@ -60,7 +60,6 @@ public class CoreBot extends TelegramLongPollingBot {
                         break;
 
                     case TRAINEE:
-
                             execute(operationService.createListMessage(update));
                             execute(operationService.createSimpleMessage(update, store.selectAll()));
                             break;
@@ -72,12 +71,41 @@ public class CoreBot extends TelegramLongPollingBot {
                         break;
 
                     case MAIN:
+                        endDel = false;
+                        dellExams = false;
                         execute(operationService.mainMonitor(update));
                         break;
 
                     case LIST_COMMAND:
                         execute(operationService.listCommand(update));
                         break;
+
+                    case EXAMS:
+                        execute(operationService.createExamsMessage(update));
+                        break;
+
+                    case RECORD:
+                        startAdd = true;
+                        execute(operationService.createWriteExamsMessage(update));
+                        break;
+
+                    case SCHEDULE_EXAMS_LIST:
+                        execute(operationService.createExamsTraineesMessage(update));
+                        execute(operationService.createSimpleMessage(update, examsTrainees.getInfo()));
+                        break;
+
+                    case DELETED_TRAINEE_EXAMS:
+                        dellExams = true;
+                        execute(operationService.createExamsDeletedMessage(update));
+                        break;
+
+                    case DELETED_TRAINEES_ALL:
+                        examsTrainees.deletedAllExams();
+                        execute(operationService.createCompleteExamsAllMessage(update));
+                        break;
+
+
+
 
                     case NAME_1:
                         name_1 = true;
@@ -134,11 +162,21 @@ public class CoreBot extends TelegramLongPollingBot {
                             store.save(NAME_4, update.getMessage().getText());
                             break;
                         }
-
+                        if (startAdd == true) {
+                            examsTrainees.addTraineeExams(update.getMessage().getText());
+                            break;
+                        }
 
                         if (endDel == true) {
                             store.deleted(update.getMessage().getText());
                             execute(operationService.createCompletedMessage(update));
+                            break;
+                        }
+
+                        if (dellExams == true) {
+                            examsTrainees.deletedExamsTrainee(update.getMessage().getText());
+                            execute(operationService.createCompleteExamsdMessage(update));
+                            break;
                         }
                         if (pass == false) {
                             execute(operationService.createErrorPassword(update));
