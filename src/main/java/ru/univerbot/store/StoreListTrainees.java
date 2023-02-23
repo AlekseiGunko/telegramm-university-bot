@@ -35,7 +35,7 @@ public class StoreListTrainees implements BaseStoreTrainees {
             String key = entry.getKey();
             List<String> value = entry.getValue();
             for (String s : value)
-            result.add(key + " - " + s);
+                result.add(key + " - " + s);
         }
 
         return result;
@@ -48,7 +48,7 @@ public class StoreListTrainees implements BaseStoreTrainees {
 
         for (Map.Entry<String, List<String>> entry : localStore.entrySet()) {
             List<String> value = entry.getValue();
-            Iterator <String> valueIterator = value.iterator();
+            Iterator<String> valueIterator = value.iterator();
             while (valueIterator.hasNext()) {
                 String nameTr = valueIterator.next();
                 if (nameTr.equals(nameTrainee)) {

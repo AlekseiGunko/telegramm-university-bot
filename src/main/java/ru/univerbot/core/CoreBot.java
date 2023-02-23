@@ -8,7 +8,6 @@ import ru.univerbot.store.StoreExamsTrainees;
 import ru.univerbot.store.StoreListTrainees;
 
 
-
 import static ru.univerbot.Config.COMMON_PASSWORD;
 import static ru.univerbot.constant.VarConstant.*;
 
@@ -16,14 +15,34 @@ public class CoreBot extends TelegramLongPollingBot {
     SendMessageOperationService operationService = new SendMessageOperationService();
     private StoreListTrainees store = new StoreListTrainees();
     private StoreExamsTrainees examsTrainees = new StoreExamsTrainees();
+
+    //флаг для начала/конца добавление инфы в локальное хранилище стажеров
     private boolean startAdd;
+
+    //флаг для начала/конца добавление инфы в локальное хранилище экзаменов
+    private boolean startAddExam;
+
+    //флаг для активации бота по паролю
     private boolean pass = false;
+
+    //флаг для начала/конца удаления инфы из локального хранилища стажеров
     private boolean endDel;
+
+    //флаг для начала/конца удаления инфы из локального хранилища экзаменов
     private boolean dellExams;
+
+    //флаг для активации наставника 1
     private boolean name_1;
+
+    //флаг для активации наставника 2
     private boolean name_2;
+
+    //флаг для активации наставника 3
     private boolean name_3;
+
+    //флаг для активации наставника 4
     private boolean name_4;
+
     private Config config = new Config();
 
 
@@ -56,13 +75,14 @@ public class CoreBot extends TelegramLongPollingBot {
 
                     case END_TRAINEE:
                         startAdd = false;
+                        startAddExam = false;
                         execute(operationService.createEndMessage(update));
                         break;
 
                     case TRAINEE:
-                            execute(operationService.createListMessage(update));
-                            execute(operationService.createSimpleMessage(update, store.selectAll()));
-                            break;
+                        execute(operationService.createListMessage(update));
+                        execute(operationService.createSimpleMessage(update, store.selectAll()));
+                        break;
 
 
                     case DELETED_TRAINEE:
@@ -85,13 +105,14 @@ public class CoreBot extends TelegramLongPollingBot {
                         break;
 
                     case RECORD:
-                        startAdd = true;
+                        startAddExam = true;
                         execute(operationService.createWriteExamsMessage(update));
                         break;
 
                     case SCHEDULE_EXAMS_LIST:
                         execute(operationService.createExamsTraineesMessage(update));
                         execute(operationService.createSimpleMessage(update, examsTrainees.getInfo()));
+                        execute(operationService.createWarningInfo(update));
                         break;
 
                     case DELETED_TRAINEE_EXAMS:
@@ -103,8 +124,6 @@ public class CoreBot extends TelegramLongPollingBot {
                         examsTrainees.deletedAllExams();
                         execute(operationService.createCompleteExamsAllMessage(update));
                         break;
-
-
 
 
                     case NAME_1:
@@ -162,7 +181,7 @@ public class CoreBot extends TelegramLongPollingBot {
                             store.save(NAME_4, update.getMessage().getText());
                             break;
                         }
-                        if (startAdd == true) {
+                        if (startAddExam == true) {
                             examsTrainees.addTraineeExams(update.getMessage().getText());
                             break;
                         }

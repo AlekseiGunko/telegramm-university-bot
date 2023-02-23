@@ -8,9 +8,9 @@ import java.util.List;
 
 public class ButtonsService {
 
-    public ReplyKeyboardMarkup setButtons (List<KeyboardRow> keyboardRowList) {
+    public ReplyKeyboardMarkup setButtons(List<KeyboardRow> keyboardRowList) {
 
-        //добавление кнопок с натройками на панель бота
+        //добавление кнопок с настройками на панель бота
 
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         replyKeyboardMarkup.setSelective(true);
@@ -20,7 +20,7 @@ public class ButtonsService {
         return replyKeyboardMarkup;
     }
 
-    public KeyboardRow createButtonsOnKeyboard (List <String> buttonsName) {
+    public KeyboardRow createButtonsOnKeyboard(List<String> buttonsName) {
 
         //создаем кнопки, добавляем на клавиатуру и кладем их в лист
 

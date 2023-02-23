@@ -25,7 +25,7 @@ public class CreateKeyboardForBot {
         return keyboardMarkup;
     }
 
-    public ReplyKeyboardMarkup addDeleteCheckTrainee () {
+    public ReplyKeyboardMarkup addDeleteCheckTrainee() {
 
         //клавиатура выбора действия для наставника
 
@@ -37,7 +37,7 @@ public class CreateKeyboardForBot {
         return keyboardMarkup;
     }
 
-    public ReplyKeyboardMarkup listCommand () {
+    public ReplyKeyboardMarkup listCommand() {
 
         //клавиатура с кнопкой список команд
 
@@ -47,7 +47,7 @@ public class CreateKeyboardForBot {
         return keyboardMarkup;
     }
 
-    public ReplyKeyboardMarkup mainMonitorButton () {
+    public ReplyKeyboardMarkup mainMonitorButton() {
 
         //отдельная кнопка выхода на главный экран
 
@@ -57,7 +57,7 @@ public class CreateKeyboardForBot {
         return keyboardMarkup;
     }
 
-    public ReplyKeyboardMarkup scheduleExams () {
+    public ReplyKeyboardMarkup scheduleExams() {
 
         //клавиатура команды /exams
 
@@ -68,7 +68,7 @@ public class CreateKeyboardForBot {
         return keyboardMarkup;
     }
 
-    public ReplyKeyboardMarkup addExamsAndEnd () {
+    public ReplyKeyboardMarkup addExamsAndEnd() {
 
         //клавиатура завершения добавления стажеров на экзамен
 
@@ -79,7 +79,7 @@ public class CreateKeyboardForBot {
         return keyboardMarkup;
     }
 
-    public ReplyKeyboardMarkup deletedExamsTrainees () {
+    public ReplyKeyboardMarkup deletedExamsTrainees() {
 
         //клавиатура удаление или очистки листа с записанными на экзамен стажерами
 

@@ -12,18 +12,18 @@ public class SendMessageOperationService {
     private final CreateKeyboardForBot createKeyboard = new CreateKeyboardForBot();
     private final TextConstant textConstant = new TextConstant();
 
-    public SendMessage createStartMessage (Update update) {
+    public SendMessage createStartMessage(Update update) {
 
         //выбор наставника по константе add_trainees
 
-      SendMessage message = createSimpleMessage(update, textConstant.ADD_TRAINEES);
+        SendMessage message = createSimpleMessage(update, textConstant.ADD_TRAINEES);
         ReplyKeyboardMarkup keyboardMarkup = createKeyboard.createCoach();
         message.setReplyMarkup(keyboardMarkup);
         return message;
 
     }
 
-    public SendMessage createName1Message (Update update) {
+    public SendMessage createName1Message(Update update) {
 
         //работа со стажерами наставник 1
 
@@ -35,7 +35,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createName2Message (Update update) {
+    public SendMessage createName2Message(Update update) {
 
         //работа со стажерами наставник 2
 
@@ -47,7 +47,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createName3Message (Update update) {
+    public SendMessage createName3Message(Update update) {
 
         //работа со стажерами наставник 3
 
@@ -59,7 +59,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createName4Message (Update update) {
+    public SendMessage createName4Message(Update update) {
 
         //работа со стажерами наставник 4
 
@@ -71,7 +71,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createAddMessage (Update update) {
+    public SendMessage createAddMessage(Update update) {
 
         //добавление стажеров в формате add_message
 
@@ -82,7 +82,8 @@ public class SendMessageOperationService {
         return message;
 
     }
-    public SendMessage createExamsMessage (Update update) {
+
+    public SendMessage createExamsMessage(Update update) {
 
         //сообщение о расписании экзаменов
 
@@ -93,18 +94,18 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createWriteExamsMessage (Update update) {
+    public SendMessage createWriteExamsMessage(Update update) {
 
         //сообщение о записи стажеров на экзамены
 
-         SendMessage message = createSimpleMessage(update, textConstant.MESSAGE_ADD_TRAINEES_IN_EXAMS);
+        SendMessage message = createSimpleMessage(update, textConstant.MESSAGE_ADD_TRAINEES_IN_EXAMS);
         ReplyKeyboardMarkup keyboardMarkup = createKeyboard.addExamsAndEnd();
         message.setReplyMarkup(keyboardMarkup);
         return message;
 
     }
 
-    public SendMessage createExamsTraineesMessage (Update update) {
+    public SendMessage createExamsTraineesMessage(Update update) {
 
         //сообщение выводит список стажеров на экзамене
 
@@ -115,7 +116,15 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createExamsDeletedMessage (Update update) {
+    public SendMessage createWarningInfo(Update update) {
+
+        //сообщение предупрежадет о ежемесячной очистке списка стажеров записанных на экзамен
+
+        SendMessage message = createSimpleMessage(update, textConstant.WARNING);
+        return message;
+    }
+
+    public SendMessage createExamsDeletedMessage(Update update) {
 
         //сообщение выводит формат удаления экзаменуемого
 
@@ -124,7 +133,7 @@ public class SendMessageOperationService {
     }
 
 
-    public SendMessage createListMessage (Update update) {
+    public SendMessage createListMessage(Update update) {
 
         //сообщение выводит список текущих стажеров
 
@@ -135,7 +144,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createCompletedMessage (Update update) {
+    public SendMessage createCompletedMessage(Update update) {
 
         //сообщение что стажер удален успешно
 
@@ -144,7 +153,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createCompleteExamsdMessage (Update update) {
+    public SendMessage createCompleteExamsdMessage(Update update) {
 
         //сообщение что экзаменуемый удален успешно
 
@@ -153,7 +162,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createCompleteExamsAllMessage (Update update) {
+    public SendMessage createCompleteExamsAllMessage(Update update) {
 
         //сообщение что список экзаменов очищен успешно
 
@@ -162,7 +171,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createEndMessage (Update update) {
+    public SendMessage createEndMessage(Update update) {
 
         //сообщение что стажеры добавлены
 
@@ -170,7 +179,7 @@ public class SendMessageOperationService {
         return message;
     }
 
-    public SendMessage createHelloMessage (Update update) {
+    public SendMessage createHelloMessage(Update update) {
 
         //ответ на команду /start и запрос пароля
 
@@ -178,7 +187,7 @@ public class SendMessageOperationService {
         return message;
     }
 
-    public SendMessage createTruePassword (Update update) {
+    public SendMessage createTruePassword(Update update) {
 
         //сообщение правильного ввода пароля
 
@@ -190,7 +199,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createErrorPassword (Update update) {
+    public SendMessage createErrorPassword(Update update) {
 
         //сообщение ошибки ввода пароля
 
@@ -199,7 +208,7 @@ public class SendMessageOperationService {
 
     }
 
-    public SendMessage createDeletedMessage (Update update) {
+    public SendMessage createDeletedMessage(Update update) {
 
         //сообщение при удалении стажеров
 
@@ -207,7 +216,7 @@ public class SendMessageOperationService {
         return message;
     }
 
-    public SendMessage mainMonitor (Update update) {
+    public SendMessage mainMonitor(Update update) {
 
         //сообщение и кнопка главного экрана
 
@@ -217,7 +226,7 @@ public class SendMessageOperationService {
         return message;
     }
 
-    public SendMessage listCommand (Update update) {
+    public SendMessage listCommand(Update update) {
 
         //сообщение для кнопки главного экрана
 
@@ -226,11 +235,9 @@ public class SendMessageOperationService {
     }
 
 
-
-
     //методы создания сообщений
 
-    public SendMessage createSimpleMessage (Update update, String message) {
+    public SendMessage createSimpleMessage(Update update, String message) {
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(update.getMessage().getChatId());
@@ -238,7 +245,7 @@ public class SendMessageOperationService {
         return sendMessage;
     }
 
-    public SendMessage createSimpleMessage (Update update, List<String> messages) {
+    public SendMessage createSimpleMessage(Update update, List<String> messages) {
 
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(update.getMessage().getChatId());
