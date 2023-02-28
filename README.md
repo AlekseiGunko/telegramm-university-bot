@@ -38,6 +38,7 @@ _____
         <scope>provided</scope>
     </dependency>
 ```
+Всю дополнительную информацию для библиотеки Telegrambots можно найти [тут](https://github.com/rubenlagus/TelegramBots).
 - создать класс Config в корне пакета, добавить его в [gitignore](https://github.com/AlekseiGunko/telegramm-university-bot/blob/master/src/main/java/ru/.gitignore), чтобы ваши данные были скрыты:
 ``` java
 
