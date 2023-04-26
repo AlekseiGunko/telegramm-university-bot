@@ -1,4 +1,4 @@
-# [telegramm-university-bot](https://github.com/AlekseiGunko/telegramm-university-bot) - корпоративный телеграмм бот
+# [telegramm-university-bot](https://github.com/AlekseiGunko/telegramm-university-bot) - корпоративный телеграмм-бот
 ![javaLang](https://img.shields.io/badge/Language-Java-blue)
 ![typeProj](https://img.shields.io/badge/TypeProject-Pet-yellow)
 ![status](https://img.shields.io/badge/Status-Completed-green)
